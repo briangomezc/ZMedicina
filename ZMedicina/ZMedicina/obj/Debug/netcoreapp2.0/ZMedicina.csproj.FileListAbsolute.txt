@@ -1,0 +1,15 @@
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\ZMedicina.deps.json
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\ZMedicina.runtimeconfig.json
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\ZMedicina.runtimeconfig.dev.json
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\ZMedicina.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.csprojResolveAssemblyReference.cache
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.csproj.CoreCompileInputs.cache
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.AssemblyInfoInputs.cache
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.AssemblyInfo.cs
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\ZMedicina.pdb
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Model.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Persistence.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Persistence.pdb
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Model.pdb
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.pdb
