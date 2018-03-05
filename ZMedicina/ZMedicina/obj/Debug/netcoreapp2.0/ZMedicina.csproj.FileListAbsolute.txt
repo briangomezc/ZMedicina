@@ -13,3 +13,5 @@ C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Model.pdb
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.dll
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\obj\Debug\netcoreapp2.0\ZMedicina.pdb
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Service.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\ZMedicina\bin\Debug\netcoreapp2.0\Service.pdb

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model;
+using Persistence;
 using System;
 
 namespace Persistence
@@ -10,7 +11,7 @@ namespace Persistence
 
         public PacienteDbContext(DbContextOptions<PacienteDbContext> options) : base(options)
         {
-
+            
         }
     }
 }
