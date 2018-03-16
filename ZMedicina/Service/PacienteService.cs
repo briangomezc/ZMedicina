@@ -85,7 +85,7 @@ namespace Service
                     x.PacienteID == model.PacienteID
                     );
 
-                
+                originalModel.Cedula = model.Cedula;
                 originalModel.Nombre = model.Nombre;
                 originalModel.Apellidos = model.Apellidos;
                 originalModel.Fecha = model.Fecha;

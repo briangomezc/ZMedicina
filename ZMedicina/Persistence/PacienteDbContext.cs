@@ -9,6 +9,8 @@ namespace Persistence
     {
         public DbSet<Paciente> Paciente { get; set; }
 
+        public DbSet<Medico> Medico { get; set; }
+
         public PacienteDbContext(DbContextOptions<PacienteDbContext> options) : base(options)
         {
             

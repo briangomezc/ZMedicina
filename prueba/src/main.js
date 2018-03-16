@@ -3,6 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import style from './assets/css/style.css'
+
+
+require('./assets/lib/jquery/jquery.min.js')
+require('./assets/js/app.js')
+require('./assets/lib/bootstrap/dist/js/bootstrap.min.js')
+require('./assets/lib/prettify/prettify.js')
+require('./assets/lib/prettify/lang-css.js')
+
+
 
 Vue.config.productionTip = false
 

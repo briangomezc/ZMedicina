@@ -32,6 +32,7 @@ namespace ZMedicina
             var connection = Configuration.GetConnectionString("Dev");
             services.AddDbContext<PacienteDbContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IPacienteService, PacienteService>();
+            services.AddTransient<IMedicoService, MedicoService>();
 
         }
 
@@ -42,6 +43,10 @@ namespace ZMedicina
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
 
             app.UseMvc();
         }
