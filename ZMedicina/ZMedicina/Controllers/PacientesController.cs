@@ -11,7 +11,7 @@ using Service;
 namespace ZMedicina.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class PacientesController : Controller
     {
         private readonly IPacienteService _PacienteService;
@@ -21,7 +21,7 @@ namespace ZMedicina.Controllers
             _PacienteService = PacienteService;
 
 
-    }
+        }
         // GET api/values
         [HttpGet]
         public IActionResult Get()
@@ -47,13 +47,13 @@ namespace ZMedicina.Controllers
             return Json(
                 _PacienteService.Add(Model)
              );
-
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Paciente model)
+        public IActionResult Put(int id, [FromBody] Paciente model)
         {
+            model.PacienteID = id;
             return Json(
                _PacienteService.Update(model)
             );

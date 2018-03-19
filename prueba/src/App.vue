@@ -13,17 +13,24 @@
                   <li>   
                      <router-link to="/CrudPaciente">Paciente</router-link>
                   </li>
+
                   <li>
-                      <a href="#getting_started">Medico</a>
+                      <router-link to="/CrudMedico">Medico</router-link>
+                  </li>
+
+                   <li>
+                      <router-link to="/HistorialMedico">Historial Medico</router-link>
+                  </li>
+                  
+                  <li>
+                      <router-link to="/Citas">Citas</router-link>
                   </li>
                   <li>
-                      <a href="#plugins">Citas</a>
+                      <router-link to="/Tratamiento">Tratamiento</router-link>
                   </li>
+                  
                   <li>
-                      <a href="#support">Support</a>
-                  </li>
-                  <li>
-                      <a href="#changelog">Login</a>
+                     <router-link to="/Login">Login</router-link>
                   </li>
               </ul>
               <!--Sidebar bottom content-->
@@ -57,6 +64,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>

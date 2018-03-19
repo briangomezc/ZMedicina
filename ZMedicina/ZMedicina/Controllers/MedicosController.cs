@@ -11,7 +11,7 @@ using Service;
 namespace ZMedicina.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class MedicosController : Controller
     {
         private readonly IMedicoService _MedicoService;
