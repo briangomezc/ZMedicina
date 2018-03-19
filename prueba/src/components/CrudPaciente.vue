@@ -15,7 +15,7 @@
                     <input type="text" name="apellidos" id="apellidos" class="form-control" v-model="paciente.Apellidos">
 
                 <br><label for="nombre">Fecha:</label>
-                    <input type="datetime-local" name="fecha" id="fecha" class="form-control" v-model="paciente.Fecha">
+                    <input type="date" name="fecha" id="fecha" class="form-control" v-model="paciente.Fecha">
 
                 <br><label for="nombre">Password:</label>
                     <input type="password" name="pass" id="pass" class="form-control" v-model="paciente.Pass">
