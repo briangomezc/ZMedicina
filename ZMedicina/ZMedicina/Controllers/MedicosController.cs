@@ -52,8 +52,9 @@ namespace ZMedicina.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Medico model)
+        public IActionResult Put(int id, [FromBody] Medico model)
         {
+            model.MedicoID = id;
             return Json(
                _MedicoService.Update(model)
             );
