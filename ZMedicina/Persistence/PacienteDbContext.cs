@@ -15,5 +15,14 @@ namespace Persistence
         {
             
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Paciente>()
+                .HasOne(p => p.Medico)
+                .WithMany(b => b.Pacientes)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

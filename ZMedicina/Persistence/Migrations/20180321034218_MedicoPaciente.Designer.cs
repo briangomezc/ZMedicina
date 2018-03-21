@@ -11,9 +11,10 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    partial class PacienteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180321034218_MedicoPaciente")]
+    partial class MedicoPaciente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +68,7 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("Fecha");
 
-                    b.Property<int?>("MedicoID")
-                        .IsRequired();
+                    b.Property<int?>("MedicoID");
 
                     b.Property<string>("Nombre");
 

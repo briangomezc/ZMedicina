@@ -27,7 +27,8 @@ namespace Model
         
         public string Celular { get; set; }
 
-        [NotMapped]
-        public int Age { get { return DateTime.Now.Year - Fecha.Year; } }
+        public int? MedicoID { get; set; } 
+
+        public Medico Medico { get; set; }
     }
 }
