@@ -19,10 +19,10 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // configures one-to-many relationship
             modelBuilder.Entity<Paciente>()
-                .HasOne(p => p.Medico)
-                .WithMany(b => b.Pacientes)
-                .OnDelete(DeleteBehavior.Cascade);
+            .HasOne(p => p.Medico)
+            .WithMany(b => b.Pacientes);
         }
     }
 }

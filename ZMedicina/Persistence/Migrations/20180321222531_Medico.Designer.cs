@@ -11,7 +11,7 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    [Migration("20180320174221_Medico")]
+    [Migration("20180321222531_Medico")]
     partial class Medico
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Telefono");
 
-                    b.Property<string>("TipoMedico");
+                    b.Property<string>("Tipo");
 
                     b.Property<string>("sexo");
 
@@ -68,6 +68,8 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("Fecha");
 
+                    b.Property<int?>("MedicoID");
+
                     b.Property<string>("Nombre");
 
                     b.Property<string>("Pass");
@@ -78,7 +80,16 @@ namespace Persistence.Migrations
 
                     b.HasKey("PacienteID");
 
+                    b.HasIndex("MedicoID");
+
                     b.ToTable("Paciente");
+                });
+
+            modelBuilder.Entity("Model.Paciente", b =>
+                {
+                    b.HasOne("Model.Medico", "Medico")
+                        .WithMany("Pacientes")
+                        .HasForeignKey("MedicoID");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,7 +24,7 @@ namespace Model
 
         public string sexo { get; set; }
 
-        public string TipoMedico { get; set; }
+        public string Tipo { get; set; }
 
         public string Especializaciones { get; set; }
 
@@ -32,7 +32,7 @@ namespace Model
 
         public string Celular { get; set; }
 
-        public List<Paciente> Pacientes { get;set; }
+        public ICollection<Paciente> Pacientes { get;set; }
 
     }
 }

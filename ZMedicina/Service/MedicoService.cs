@@ -93,7 +93,7 @@ namespace Service
                 originalModel.Pass = model.Pass;
                 originalModel.Email = model.Email;
                 originalModel.sexo = model.sexo;
-                originalModel.TipoMedico = model.TipoMedico;
+                originalModel.Tipo = model.Tipo;
                 originalModel.Especializaciones = model.Especializaciones;
                 originalModel.Telefono = model.Telefono;
                 originalModel.Celular = model.Celular;

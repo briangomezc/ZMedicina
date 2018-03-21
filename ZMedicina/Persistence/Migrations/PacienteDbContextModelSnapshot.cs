@@ -43,7 +43,7 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Telefono");
 
-                    b.Property<string>("TipoMedico");
+                    b.Property<string>("Tipo");
 
                     b.Property<string>("sexo");
 
@@ -67,8 +67,7 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("Fecha");
 
-                    b.Property<int?>("MedicoID")
-                        .IsRequired();
+                    b.Property<int?>("MedicoID");
 
                     b.Property<string>("Nombre");
 
@@ -89,8 +88,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Model.Medico", "Medico")
                         .WithMany("Pacientes")
-                        .HasForeignKey("MedicoID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MedicoID");
                 });
 #pragma warning restore 612, 618
         }
