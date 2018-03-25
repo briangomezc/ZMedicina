@@ -11,8 +11,8 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    [Migration("20180321222531_Medico")]
-    partial class Medico
+    [Migration("20180325011109_pacienteMedico")]
+    partial class pacienteMedico
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,8 +68,6 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("Fecha");
 
-                    b.Property<int?>("MedicoID");
-
                     b.Property<string>("Nombre");
 
                     b.Property<string>("Pass");
@@ -80,16 +78,33 @@ namespace Persistence.Migrations
 
                     b.HasKey("PacienteID");
 
-                    b.HasIndex("MedicoID");
-
                     b.ToTable("Paciente");
                 });
 
-            modelBuilder.Entity("Model.Paciente", b =>
+            modelBuilder.Entity("Service.pacienteMedico", b =>
+                {
+                    b.Property<int>("PacienteID");
+
+                    b.Property<int>("MedicoID");
+
+                    b.HasKey("PacienteID", "MedicoID");
+
+                    b.HasIndex("MedicoID");
+
+                    b.ToTable("pacienteMedico");
+                });
+
+            modelBuilder.Entity("Service.pacienteMedico", b =>
                 {
                     b.HasOne("Model.Medico", "Medico")
-                        .WithMany("Pacientes")
-                        .HasForeignKey("MedicoID");
+                        .WithMany("pacienteMedico")
+                        .HasForeignKey("MedicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Model.Paciente", "Paciente")
+                        .WithMany("pacienteMedico")
+                        .HasForeignKey("PacienteID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

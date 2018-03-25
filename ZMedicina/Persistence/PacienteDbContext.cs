@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model;
 using Persistence;
+using Service;
 using System;
 
 namespace Persistence
@@ -11,6 +12,8 @@ namespace Persistence
 
         public DbSet<Medico> Medico { get; set; }
 
+        public DbSet<pacienteMedico> pacienteMedico { get; set; }
+
         public PacienteDbContext(DbContextOptions<PacienteDbContext> options) : base(options)
         {
             
@@ -19,10 +22,7 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // configures one-to-many relationship
-            modelBuilder.Entity<Paciente>()
-            .HasOne(p => p.Medico)
-            .WithMany(b => b.Pacientes);
+            modelBuilder.Entity<pacienteMedico>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
         }
     }
 }

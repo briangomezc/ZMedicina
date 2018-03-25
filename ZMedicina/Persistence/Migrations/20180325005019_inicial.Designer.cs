@@ -11,9 +11,10 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    partial class PacienteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180325005019_inicial")]
+    partial class inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,6 +68,8 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("Fecha");
 
+                    b.Property<int?>("MedicoID");
+
                     b.Property<string>("Nombre");
 
                     b.Property<string>("Pass");
@@ -77,33 +80,16 @@ namespace Persistence.Migrations
 
                     b.HasKey("PacienteID");
 
+                    b.HasIndex("MedicoID");
+
                     b.ToTable("Paciente");
                 });
 
-            modelBuilder.Entity("Service.pacienteMedico", b =>
-                {
-                    b.Property<int>("PacienteID");
-
-                    b.Property<int>("MedicoID");
-
-                    b.HasKey("PacienteID", "MedicoID");
-
-                    b.HasIndex("MedicoID");
-
-                    b.ToTable("pacienteMedico");
-                });
-
-            modelBuilder.Entity("Service.pacienteMedico", b =>
+            modelBuilder.Entity("Model.Paciente", b =>
                 {
                     b.HasOne("Model.Medico", "Medico")
-                        .WithMany("pacienteMedico")
-                        .HasForeignKey("MedicoID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Model.Paciente", "Paciente")
-                        .WithMany("pacienteMedico")
-                        .HasForeignKey("PacienteID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Pacientes")
+                        .HasForeignKey("MedicoID");
                 });
 #pragma warning restore 612, 618
         }

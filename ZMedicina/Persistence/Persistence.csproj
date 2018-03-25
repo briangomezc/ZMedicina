@@ -5,16 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180321010631_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321023532_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321030116_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321031345_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321033321_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321033703_MedicoPaciente.cs" />
-    <Compile Remove="Migrations\20180321043122_MedicoPaciente1.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />

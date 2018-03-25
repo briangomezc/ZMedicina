@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Linq;
+using Model;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using Service;
 
 namespace Model
 {
@@ -32,7 +36,7 @@ namespace Model
 
         public string Celular { get; set; }
 
-        public ICollection<Paciente> Pacientes { get;set; }
+        public IList<pacienteMedico> pacienteMedico { get;set; }
 
     }
 }
