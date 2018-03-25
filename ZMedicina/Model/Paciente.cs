@@ -33,5 +33,9 @@ namespace Model
         public string Celular { get; set; }
 
         public IList<pacienteMedico> pacienteMedico { get; set; }
+
+        public IList<Historial> Historial { get; set; }
+
+        public IList<Cita> Cita { get; set; }
     }
 }

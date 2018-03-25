@@ -33,6 +33,8 @@ namespace ZMedicina
             services.AddDbContext<PacienteDbContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IPacienteService, PacienteService>();
             services.AddTransient<IMedicoService, MedicoService>();
+            services.AddTransient<ICitaService, CitaService>();
+            services.AddTransient<IHistorialService, HistorialService>();
 
         }
 

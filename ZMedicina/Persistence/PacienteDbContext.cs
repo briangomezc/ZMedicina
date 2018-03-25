@@ -14,6 +14,10 @@ namespace Persistence
 
         public DbSet<pacienteMedico> pacienteMedico { get; set; }
 
+        public DbSet<Historial> Historial { get; set; }
+
+        public DbSet<Cita> Cita { get; set; }
+
         public PacienteDbContext(DbContextOptions<PacienteDbContext> options) : base(options)
         {
             
@@ -23,6 +27,10 @@ namespace Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<pacienteMedico>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
+
+            modelBuilder.Entity<Historial>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
+
+            modelBuilder.Entity<Cita>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
         }
     }
 }

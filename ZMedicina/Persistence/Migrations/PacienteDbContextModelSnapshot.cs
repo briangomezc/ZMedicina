@@ -20,6 +20,68 @@ namespace Persistence.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Model.Cita", b =>
+                {
+                    b.Property<int>("PacienteID");
+
+                    b.Property<int>("MedicoID");
+
+                    b.Property<int>("CitaID");
+
+                    b.Property<string>("Fecha");
+
+                    b.Property<string>("Tipo");
+
+                    b.HasKey("PacienteID", "MedicoID");
+
+                    b.HasAlternateKey("CitaID");
+
+                    b.HasIndex("MedicoID");
+
+                    b.ToTable("Cita");
+                });
+
+            modelBuilder.Entity("Model.Historial", b =>
+                {
+                    b.Property<int>("PacienteID");
+
+                    b.Property<int>("MedicoID");
+
+                    b.Property<string>("Antecedentes");
+
+                    b.Property<string>("Apellidos");
+
+                    b.Property<string>("Cedula");
+
+                    b.Property<string>("Celular");
+
+                    b.Property<string>("Direccion");
+
+                    b.Property<int>("Edad");
+
+                    b.Property<int>("HistorialID");
+
+                    b.Property<string>("Nombre");
+
+                    b.Property<string>("Ocupacion");
+
+                    b.Property<string>("Seguro");
+
+                    b.Property<string>("Sintomas");
+
+                    b.Property<string>("Telefono");
+
+                    b.Property<string>("sexo");
+
+                    b.HasKey("PacienteID", "MedicoID");
+
+                    b.HasAlternateKey("HistorialID");
+
+                    b.HasIndex("MedicoID");
+
+                    b.ToTable("Historial");
+                });
+
             modelBuilder.Entity("Model.Medico", b =>
                 {
                     b.Property<int>("MedicoID")
@@ -91,6 +153,32 @@ namespace Persistence.Migrations
                     b.HasIndex("MedicoID");
 
                     b.ToTable("pacienteMedico");
+                });
+
+            modelBuilder.Entity("Model.Cita", b =>
+                {
+                    b.HasOne("Model.Medico", "Medico")
+                        .WithMany("Cita")
+                        .HasForeignKey("MedicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Model.Paciente", "Paciente")
+                        .WithMany("Cita")
+                        .HasForeignKey("PacienteID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Model.Historial", b =>
+                {
+                    b.HasOne("Model.Medico", "Medico")
+                        .WithMany("Historial")
+                        .HasForeignKey("MedicoID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Model.Paciente", "Paciente")
+                        .WithMany("Historial")
+                        .HasForeignKey("PacienteID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Service.pacienteMedico", b =>
