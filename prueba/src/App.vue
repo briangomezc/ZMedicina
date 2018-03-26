@@ -11,6 +11,10 @@
               <ul class="nav left-sidebar__elements">
                       
                   <li>   
+                     <router-link to="/Home">Home</router-link>
+                  </li>
+
+                  <li>   
                      <router-link to="/CrudPaciente">Paciente</router-link>
                   </li>
 
@@ -24,9 +28,6 @@
                   
                   <li>
                       <router-link to="/Citas">Citas</router-link>
-                  </li>
-                  <li>
-                      <router-link to="/Tratamiento">Tratamiento</router-link>
                   </li>
                   
                   <li>

@@ -12,7 +12,7 @@ namespace Service
         IEnumerable<Cita> GetAll();
         bool Add(Cita model);
         bool Update(Cita model);
-        bool Delete(int CitaID);
+        bool Delete(int categoriaid);
         Cita Get(int id);
     }
 

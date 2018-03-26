@@ -13,7 +13,7 @@ namespace Service
         IEnumerable<Historial> GetAll();
         bool Add(Historial model);
         bool Update(Historial model);
-        bool Delete(int HistorialID);
+        bool Delete(int categoriaid);
         Historial Get(int id);
     }
 
