@@ -13,17 +13,38 @@
                 <br><label for="nombre">Tipo de cita:</label>
                     <input type="text" name="tipo" id="tipo" class="form-control" v-model="cita.Tipo">
 
-                
-              
+                <br>
+                <br>
+
+                <label for="nombre">Medico:</label>
+                <select class="form-control" data-style="btn-primary" v-model="cita.MedicoID">
+                  <option :value="medico.medicoID" v-for="medico in medicos" v-bind:key="medico.medicoID">{{medico.nombre}}</option>
+                </select>
+
+                <br/>
+                <br/>
+
+                <label for="nombre">Paciente:</label>
+                <select class="form-control" data-style="btn-primary" v-model="cita.PacienteID">
+                  <option :value="paciente.pacienteID" v-for="paciente in pacientes" v-bind:key="paciente.pacienteID">{{paciente.nombre}}</option>
+                </select>
+
+                <br>
+                <br>
+
                 <br/>
                     <button type="button" class="btn" v-bind:class="[agregando ? 'btn-primary' : 'btn-warning']" v-on:click="agregar">{{textoBoton}}</button>
                 <br>
+                <br>
+                <br>
 
-                <table class="table mt-5">
+              <table class="table mt-5">
                 <thead class="thead-dark">
                     <tr>
                         
                         <th>Id</th>
+                        <th>Id Medico</th>
+                        <th>Id Paciente</th>
                         <th>Fecha</th>
                         <th>Tipo de Cita</th>
                         <th>Acción</th>
@@ -33,15 +54,18 @@
                 <tbody>
                     <tr v-for="cita in citas" v-bind:key='cita.citaID'>
                         <td>{{cita.citaID}}</td>
+                        <td>{{cita.medicoID}}</td>
+                        <td>{{cita.pacienteID}}</td>
                         <td>{{cita.fecha}}</td>
                         <td>{{cita.tipo}}</td>
+
                         <td>
                             <button class="btn btn-info" v-on:click="ver(cita.citaID)">Ver</button>
                             <button class="btn btn-danger" v-on:click="borrar(cita.citaID)">Borrar</button>
                         </td>
                     </tr>
                 </tbody>
-            </table>   
+              </table>   
 
 
             </div>
@@ -63,23 +87,30 @@ export default {
   name: "Citas",
   created: function() {
     this.cargar();
-},
+    this.cargarMedicos();
+    this.cargarPacientes();
+  },
 
-data: function() {
+  data: function() {
     return {
       citas: [],
 
       cita: {
         Fecha: "",
-        Tipo:""
+        Tipo:"",
+        MedicoID: "",
+        PacienteID: ""
       },
       textoBoton: "Agregar",
       agregando: true,
-      citaID: ""
+      citaID: "",
+
+      medicos: [],
+      pacientes: []
     }
   },
 
-methods: {
+  methods: {
     agregar: function() {
       if (this.citaID == "") {
         axios
@@ -88,6 +119,8 @@ methods: {
             this.cargar();
             this.cita.Fecha = "";
             this.cita.Tipo = "";
+            this.cita.MedicoID = "";
+            this.cita.PacienteID = "";
           })
           .catch(error => {
             alert("Error interno: " + error.toString());
@@ -100,6 +133,8 @@ methods: {
             this.citaID = "";
             this.cita.Fecha = "";
             this.cita.Tipo = "";
+            this.cita.MedicoID = "";
+            this.cita.PacienteID = "";
             this.textoBoton = "Agregar";
             this.agregando = true;
           })
@@ -128,6 +163,8 @@ methods: {
           this.citaID = "";
           this.cita.Fecha = "";
           this.cita.Tipo = "";
+          this.cita.MedicoID ="";
+          this.cita.PacienteID = "";
           this.textoBoton = "Agregar";
           this.agregando = true;
         })
@@ -143,17 +180,39 @@ methods: {
           this.citaID = id;
           this.cita.Fecha = response.data.fecha;
           this.cita.Tipo = response.data.tipo;
+          this.cita.MedicoID = response.data.medicoID;
+          this.cita.PacienteID = response.data.pacienteID;
           this.textoBoton = "Editar";
           this.agregando = false;
         })
         .catch(error => {
           alert("Error interno: " + error.toString());
         });
-      }
+    },
+
+    cargarMedicos: function() {
+      axios
+        .get("http://localhost:55313/api/Medicos/Get")
+        .then(response => {
+          this.medicos = response.data;
+        })
+        .catch(error => {
+          alert("Error interno: " + error.toString());
+        });
+    },
+
+    cargarPacientes: function() {
+      axios
+        .get("http://localhost:55313/api/Pacientes/Get")
+        .then(response => {
+          this.pacientes = response.data;
+        })
+        .catch(error => {
+          alert("Error interno: " + error.toString());
+        });
     }
-
-
-};
+  }
+}
 </script>
 
 <style>
@@ -161,4 +220,6 @@ h1,
 h2 {
   font-weight: normal;
 }
+
+
 </style>

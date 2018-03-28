@@ -30,7 +30,7 @@ namespace Persistence
 
             modelBuilder.Entity<Historial>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
 
-            modelBuilder.Entity<Cita>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
+            modelBuilder.Entity<Cita>().ToTable("Citas"); 
         }
     }
 }

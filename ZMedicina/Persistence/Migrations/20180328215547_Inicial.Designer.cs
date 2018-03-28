@@ -11,7 +11,7 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    [Migration("20180325202816_Inicial")]
+    [Migration("20180328215547_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,23 +23,24 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Model.Cita", b =>
                 {
-                    b.Property<int>("PacienteID");
+                    b.Property<int>("CitaID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Fecha");
 
                     b.Property<int>("MedicoID");
 
-                    b.Property<int>("CitaID");
-
-                    b.Property<string>("Fecha");
+                    b.Property<int>("PacienteID");
 
                     b.Property<string>("Tipo");
 
-                    b.HasKey("PacienteID", "MedicoID");
-
-                    b.HasAlternateKey("CitaID");
+                    b.HasKey("CitaID");
 
                     b.HasIndex("MedicoID");
 
-                    b.ToTable("Cita");
+                    b.HasIndex("PacienteID");
+
+                    b.ToTable("Citas");
                 });
 
             modelBuilder.Entity("Model.Historial", b =>
@@ -177,7 +178,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Model.Paciente", "Paciente")
-                        .WithMany("Historial")
+                        .WithMany()
                         .HasForeignKey("PacienteID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -56,6 +56,7 @@
                         <th>Cedula</th>
                         <th>Edad</th>
                         <th>Sexo</th>
+                        <th>Seguro</th>
                         <th>Ocupacion</th>
                         <th>Telefono</th>
                         <th>Celular</th>
@@ -74,6 +75,7 @@
                         <td>{{historial.cedula}}</td>
                         <td>{{historial.edad}}</td>
                         <td>{{historial.sexo}}</td>
+                        <td>{{historial.seguro}}</td>
                         <td>{{historial.ocupacion}}</td>
                         <td>{{historial.telefono}}</td>
                         <td>{{historial.celular}}</td>
@@ -146,6 +148,7 @@ methods: {
             this.historial.Cedula = "";
             this.historial.Edad = "";
             this.historial.sexo = "";
+            this.historial.Seguro = "";
             this.historial.Ocupacion = "";
             this.historial.Telefono = "";
             this.historial.Celular = "";
@@ -166,6 +169,7 @@ methods: {
             this.historial.Cedula = "";
             this.historial.Edad = "";
             this.historial.sexo = "";
+            this.historial.Seguro = "";
             this.historial.Ocupacion = "";
             this.historial.Telefono = "";
             this.historial.Celular = "";
@@ -202,6 +206,7 @@ methods: {
           this.historial.Cedula = "";
           this.historial.Edad = "";
           this.historial.sexo = "";
+          this.historial.Seguro = "";
           this.historial.Ocupacion = "";
           this.historial.Telefono = "";
           this.historial.Celular = "";

@@ -12,7 +12,7 @@ namespace Service
         IEnumerable<Cita> GetAll();
         bool Add(Cita model);
         bool Update(Cita model);
-        bool Delete(int categoriaid);
+        bool Delete(int id);
         Cita Get(int id);
     }
 
@@ -64,11 +64,11 @@ namespace Service
         {
             try
             {
-                _PacienteDbContext.Add(model);
+                _PacienteDbContext.Add(model); 
                 _PacienteDbContext.SaveChanges();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return false;
@@ -87,6 +87,8 @@ namespace Service
                
                 originalModel.Fecha = model.Fecha;
                 originalModel.Tipo = model.Tipo;
+                originalModel.PacienteID = model.PacienteID;
+                originalModel.MedicoID = model.MedicoID; 
 
 
 
@@ -102,16 +104,16 @@ namespace Service
             }
             return true;
         }
-        public bool Delete(int CitaID)
+        public bool Delete(int id)
         {
             try
             {
-                _PacienteDbContext.Entry(new Cita { CitaID = CitaID }).State = EntityState.Deleted; ;
-                _PacienteDbContext.SaveChanges();
+                _PacienteDbContext.Entry(new Cita { CitaID = id }).State = EntityState.Deleted;
+                _PacienteDbContext.SaveChanges(); 
 
             }
             catch (Exception)
-            {
+            { 
 
                 return false;
             }

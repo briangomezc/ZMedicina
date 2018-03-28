@@ -54,27 +54,27 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cita",
+                name: "Citas",
                 columns: table => new
                 {
-                    PacienteID = table.Column<int>(nullable: false),
+                    CitaID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Fecha = table.Column<DateTime>(nullable: false),
                     MedicoID = table.Column<int>(nullable: false),
-                    CitaID = table.Column<int>(nullable: false),
-                    Fecha = table.Column<string>(nullable: true),
+                    PacienteID = table.Column<int>(nullable: false),
                     Tipo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cita", x => new { x.PacienteID, x.MedicoID });
-                    table.UniqueConstraint("AK_Cita_CitaID", x => x.CitaID);
+                    table.PrimaryKey("PK_Citas", x => x.CitaID);
                     table.ForeignKey(
-                        name: "FK_Cita_Medico_MedicoID",
+                        name: "FK_Citas_Medico_MedicoID",
                         column: x => x.MedicoID,
                         principalTable: "Medico",
                         principalColumn: "MedicoID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Cita_Paciente_PacienteID",
+                        name: "FK_Citas_Paciente_PacienteID",
                         column: x => x.PacienteID,
                         principalTable: "Paciente",
                         principalColumn: "PacienteID",
@@ -144,9 +144,14 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cita_MedicoID",
-                table: "Cita",
+                name: "IX_Citas_MedicoID",
+                table: "Citas",
                 column: "MedicoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Citas_PacienteID",
+                table: "Citas",
+                column: "PacienteID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Historial_MedicoID",
@@ -162,7 +167,7 @@ namespace Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cita");
+                name: "Citas");
 
             migrationBuilder.DropTable(
                 name: "Historial");

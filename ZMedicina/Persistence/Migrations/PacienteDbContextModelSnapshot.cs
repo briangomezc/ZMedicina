@@ -22,23 +22,24 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Model.Cita", b =>
                 {
-                    b.Property<int>("PacienteID");
-
-                    b.Property<int>("MedicoID");
-
-                    b.Property<int>("CitaID");
+                    b.Property<int>("CitaID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Fecha");
 
+                    b.Property<int>("MedicoID");
+
+                    b.Property<int>("PacienteID");
+
                     b.Property<string>("Tipo");
 
-                    b.HasKey("PacienteID", "MedicoID");
-
-                    b.HasAlternateKey("CitaID");
+                    b.HasKey("CitaID");
 
                     b.HasIndex("MedicoID");
 
-                    b.ToTable("Cita");
+                    b.HasIndex("PacienteID");
+
+                    b.ToTable("Citas");
                 });
 
             modelBuilder.Entity("Model.Historial", b =>
@@ -176,7 +177,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Model.Paciente", "Paciente")
-                        .WithMany("Historial")
+                        .WithMany()
                         .HasForeignKey("PacienteID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
