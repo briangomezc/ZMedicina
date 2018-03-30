@@ -2,26 +2,33 @@
 
   <div>
        <div id="app" class="container">
-            <h1>CRUD Medico</h1>
+            <h1>Medico</h1>
             
             <div class="form-group">
                 <label for="nombre">Cedula:</label>
                     <input type="text" name="cedula" id="cedula" class="form-control" v-model="medico.Cedula">
 
-                <br><label for="nombre">Nombre:</label>
+                <div><label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" v-model="medico.Nombre">
+                </div>
 
-                <br><label for="nombre">Apellidos:</label>
+                <div><label for="nombre">Apellidos:</label>
                     <input type="text" name="apellidos" id="apellidos" class="form-control" v-model="medico.Apellidos">
+                </div>
 
-                <br><label for="nombre">Fecha:</label>
+                <div><label for="nombre">Fecha de Creación:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" v-model="medico.Fecha">
+                </div>
 
                 <br><label for="nombre">Password:</label>
                     <input type="password" name="pass" id="pass" class="form-control" v-model="medico.Pass">
 
                 <br><label for="nombre">Sexo:</label>
-                    <input type="text" name="sexo" id="sexo" class="form-control" v-model="medico.sexo">
+
+                <div>
+                     <input type="radio" name="season" value="Masculino" v-model="medico.sexo">Masculino
+                     <input type="radio" name="season" value="Femenino" v-model="medico.sexo">Femenino
+                </div>
                 
                 <br><label for="nombre">Email:</label>
                     <input type="text" name="email" id="email" class="form-control" v-model="medico.Email">
@@ -50,7 +57,7 @@
                         <th>Cedula</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
-                        <th>Fecha</th>
+                        <th>Fecha de Creación</th>
                         <th>Password</th>
                         <th>Email</th>
                         <th>Sexo</th>
@@ -127,34 +134,71 @@ data: function() {
       agregando: true,
       medicoID: ""
     }
-  },
+},
 
 methods: {
-    agregar: function() {
-      if (this.medicoID == "") {
+        agregar: function() {
+        if (this.medicoID == "") {
+            axios
+            .post("http://localhost:55313/api/Medicos/Post", this.medico)
+            .then(response => {
+                this.cargar();
+                this.medico.Cedula = "";
+                this.medico.Nombre = "";
+                this.medico.Apellidos = "";
+                this.medico.Fecha = "";
+                this.medico.Pass = "";
+                this.medico.Email = "";
+                this.medico.sexo = "";
+                this.medico.Tipo = "";
+                this.medico.Especializaciones = "";
+                this.medico.Telefono = "";
+                this.medico.Celular = "";
+            })
+            .catch(error => {
+                alert("Error interno: " + error.toString());
+            });
+        } else {
+                axios
+                .put("http://localhost:55313/api/Medicos/Put/"+this.medicoID, this.medico)
+                .then(response => {
+                    this.cargar();
+                    this.medicoID = "";
+                    this.medico.Cedula = "";
+                    this.medico.Nombre = "";
+                    this.medico.Apellidos = "";
+                    this.medico.Fecha = "";
+                    this.medico.Pass = "";
+                    this.medico.Email = "";
+                    this.medico.sexo = "";
+                    this.medico.Tipo = "";
+                    this.medico.Especializaciones = "";
+                    this.medico.Telefono = "";
+                    this.medico.Celular = "";
+                    this.textoBoton = "Agregar";
+                    this.agregando = true;
+                })
+                .catch(error => {
+                    alert("Error interno: " + error.toString());
+                });
+            }
+        },
+
+        cargar: function() {
         axios
-          .post("http://localhost:55313/api/Medicos/Post", this.medico)
-          .then(response => {
-            this.cargar();
-            this.medico.Cedula = "";
-            this.medico.Nombre = "";
-            this.medico.Apellidos = "";
-            this.medico.Fecha = "";
-            this.medico.Pass = "";
-            this.medico.Email = "";
-            this.medico.sexo = "";
-            this.medico.Tipo = "";
-            this.medico.Especializaciones = "";
-            this.medico.Telefono = "";
-            this.medico.Celular = "";
-          })
-          .catch(error => {
+            .get("http://localhost:55313/api/Medicos/Get")
+            .then(response => {
+            this.medicos = response.data;
+            })
+            .catch(error => {
             alert("Error interno: " + error.toString());
-          });
-      } else {
+            });
+        },
+
+        borrar: function(id) {
         axios
-          .put("http://localhost:55313/api/Medicos/Put/"+this.medicoID, this.medico)
-          .then(response => {
+            .delete("http://localhost:55313/api/Medicos/Delete/" + id)
+            .then(response => {
             this.cargar();
             this.medicoID = "";
             this.medico.Cedula = "";
@@ -170,72 +214,35 @@ methods: {
             this.medico.Celular = "";
             this.textoBoton = "Agregar";
             this.agregando = true;
-          })
-          .catch(error => {
+            })
+            .catch(error => {
             alert("Error interno: " + error.toString());
-          });
-      }
-    },
+            });
+        },
 
-    cargar: function() {
-      axios
-        .get("http://localhost:55313/api/Medicos/Get")
-        .then(response => {
-          this.medicos = response.data;
-        })
-        .catch(error => {
-          alert("Error interno: " + error.toString());
-        });
-    },
-
-    borrar: function(id) {
-      axios
-        .delete("http://localhost:55313/api/Medicos/Delete/" + id)
-        .then(response => {
-          this.cargar();
-          this.medicoID = "";
-          this.medico.Cedula = "";
-          this.medico.Nombre = "";
-          this.medico.Apellidos = "";
-          this.medico.Fecha = "";
-          this.medico.Pass = "";
-          this.medico.Email = "";
-          this.medico.sexo = "";
-          this.medico.Tipo = "";
-          this.medico.Especializaciones = "";
-          this.medico.Telefono = "";
-          this.medico.Celular = "";
-          this.textoBoton = "Agregar";
-          this.agregando = true;
-        })
-        .catch(error => {
-          alert("Error interno: " + error.toString());
-        });
-    },
-
-    ver: function(id) {
-      axios
-        .get("http://localhost:55313/api/Medicos/Get/" + id)
-        .then(response => {
-          this.medicoID = id;
-          this.medico.Cedula = response.data.cedula;
-          this.medico.Nombre = response.data.nombre;
-          this.medico.Apellidos = response.data.apellidos;
-          this.medico.Fecha = response.data.fecha;
-          this.medico.Pass = response.data.pass;
-          this.medico.Email = response.data.email;
-          this.medico.sexo = response.data.sexo;
-          this.medico.Tipo = response.data.tipo;
-          this.medico.Especializaciones = response.data.especializaciones;
-          this.medico.Telefono = response.data.telefono;
-          this.medico.Celular = response.data.celular;
-          this.textoBoton = "Editar";
-          this.agregando = false;
-        })
-        .catch(error => {
-          alert("Error interno: " + error.toString());
-        });
-      }
+        ver: function(id) {
+        axios
+            .get("http://localhost:55313/api/Medicos/Get/" + id)
+            .then(response => {
+            this.medicoID = id;
+            this.medico.Cedula = response.data.cedula;
+            this.medico.Nombre = response.data.nombre;
+            this.medico.Apellidos = response.data.apellidos;
+            this.medico.Fecha = response.data.fecha;
+            this.medico.Pass = response.data.pass;
+            this.medico.Email = response.data.email;
+            this.medico.sexo = response.data.sexo;
+            this.medico.Tipo = response.data.tipo;
+            this.medico.Especializaciones = response.data.especializaciones;
+            this.medico.Telefono = response.data.telefono;
+            this.medico.Celular = response.data.celular;
+            this.textoBoton = "Editar";
+            this.agregando = false;
+            })
+            .catch(error => {
+            alert("Error interno: " + error.toString());
+            });
+        }
     }
 
 

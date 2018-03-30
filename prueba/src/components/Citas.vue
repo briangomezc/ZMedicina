@@ -14,7 +14,6 @@
                     <input type="text" name="tipo" id="tipo" class="form-control" v-model="cita.Tipo">
 
                 <br>
-                <br>
 
                 <label for="nombre">Medico:</label>
                 <select class="form-control" data-style="btn-primary" v-model="cita.MedicoID">
@@ -215,11 +214,9 @@ export default {
 }
 </script>
 
-<style>
+<style-scope>
 h1,
 h2 {
   font-weight: normal;
 }
-
-
 </style>

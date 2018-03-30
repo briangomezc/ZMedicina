@@ -9,7 +9,7 @@ namespace Service
 {
     public interface IHistorialService
     {
-        
+
         IEnumerable<Historial> GetAll();
         bool Add(Historial model);
         bool Update(Historial model);
@@ -128,4 +128,3 @@ namespace Service
         }
     }
 }
-

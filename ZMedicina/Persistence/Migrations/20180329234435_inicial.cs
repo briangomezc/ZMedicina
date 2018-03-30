@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Persistence.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +40,13 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Apellidos = table.Column<string>(nullable: true),
                     Cedula = table.Column<string>(nullable: true),
-                    Celular = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Fecha = table.Column<DateTime>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
                     Pass = table.Column<string>(nullable: true),
+                    Seguro = table.Column<string>(nullable: true),
+                    Sintomas = table.Column<string>(nullable: true),
                     Telefono = table.Column<string>(nullable: true),
                     sexo = table.Column<string>(nullable: true)
                 },
@@ -82,20 +84,21 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Historial",
+                name: "Historials",
                 columns: table => new
                 {
-                    PacienteID = table.Column<int>(nullable: false),
-                    MedicoID = table.Column<int>(nullable: false),
+                    HistorialID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Antecedentes = table.Column<string>(nullable: true),
                     Apellidos = table.Column<string>(nullable: true),
                     Cedula = table.Column<string>(nullable: true),
                     Celular = table.Column<string>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
                     Edad = table.Column<int>(nullable: false),
-                    HistorialID = table.Column<int>(nullable: false),
+                    MedicoID = table.Column<int>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
                     Ocupacion = table.Column<string>(nullable: true),
+                    PacienteID = table.Column<int>(nullable: false),
                     Seguro = table.Column<string>(nullable: true),
                     Sintomas = table.Column<string>(nullable: true),
                     Telefono = table.Column<string>(nullable: true),
@@ -103,16 +106,15 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Historial", x => new { x.PacienteID, x.MedicoID });
-                    table.UniqueConstraint("AK_Historial_HistorialID", x => x.HistorialID);
+                    table.PrimaryKey("PK_Historials", x => x.HistorialID);
                     table.ForeignKey(
-                        name: "FK_Historial_Medico_MedicoID",
+                        name: "FK_Historials_Medico_MedicoID",
                         column: x => x.MedicoID,
                         principalTable: "Medico",
                         principalColumn: "MedicoID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Historial_Paciente_PacienteID",
+                        name: "FK_Historials_Paciente_PacienteID",
                         column: x => x.PacienteID,
                         principalTable: "Paciente",
                         principalColumn: "PacienteID",
@@ -154,9 +156,14 @@ namespace Persistence.Migrations
                 column: "PacienteID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Historial_MedicoID",
-                table: "Historial",
+                name: "IX_Historials_MedicoID",
+                table: "Historials",
                 column: "MedicoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Historials_PacienteID",
+                table: "Historials",
+                column: "PacienteID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_pacienteMedico_MedicoID",
@@ -170,7 +177,7 @@ namespace Persistence.Migrations
                 name: "Citas");
 
             migrationBuilder.DropTable(
-                name: "Historial");
+                name: "Historials");
 
             migrationBuilder.DropTable(
                 name: "pacienteMedico");

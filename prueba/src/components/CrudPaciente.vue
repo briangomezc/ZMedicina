@@ -2,35 +2,53 @@
 
   <div>
        <div id="app" class="container">
-            <h1>CRUD Paciente</h1>
+            <h1>Paciente</h1>
             
+            <p>Registro de Usuario.</p>
+            
+            <hr>
+
             <div class="form-group">
                 <label for="nombre">Cedula:</label>
                     <input type="text" name="cedula" id="cedula" class="form-control" v-model="paciente.Cedula">
 
-                <br><label for="nombre">Nombre:</label>
+                <br><label for="nombre">Password:</label>
+                    <input type="password" name="pass" id="pass" class="form-control" v-model="paciente.Pass">
+                
+                <br><p>Registro Medico.</p>
+
+                <hr>
+
+                <label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" v-model="paciente.Nombre">
 
                 <br><label for="nombre">Apellidos:</label>
                     <input type="text" name="apellidos" id="apellidos" class="form-control" v-model="paciente.Apellidos">
 
-                <br><label for="nombre">Fecha:</label>
+                <br><label for="nombre">Fecha de Nacimiento:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" v-model="paciente.Fecha">
 
-                <br><label for="nombre">Password:</label>
-                    <input type="password" name="pass" id="pass" class="form-control" v-model="paciente.Pass">
-
                 <br><label for="nombre">Sexo:</label>
-                    <input type="text" name="sexo" id="sexo" class="form-control" v-model="paciente.sexo">
                 
+                <div>
+                     <input type="radio" name="season" value="Masculino" v-model="paciente.sexo">Masculino
+                     <input type="radio" name="season" value="Femenino" v-model="paciente.sexo">Femenino
+                </div>
+         
                 <br><label for="nombre">Email:</label>
-                    <input type="text" name="email" id="email" class="form-control" v-model="paciente.Email">
+                    <input type="email" name="email" id="email" class="form-control" v-model="paciente.Email">
 
                 <br><label for="nombre">Telefono:</label>
                     <input type="text" name="telefono" id="telefono" class="form-control" v-model="paciente.Telefono">
+                
+                <br><label for="nombre">Seguro:</label>
+                    <input type="text" name="seguro" id="seguro" class="form-control" v-model="paciente.Seguro">
+                
+                <br><label for="nombre">Direccion:</label>
+                    <input type="text" name="direccion" id="direccion" class="form-control" v-model="paciente.Direccion">
 
-                <br><label for="nombre">Celular:</label>
-                    <input type="text" name="celular" id="celular" class="form-control" v-model="paciente.Celular">
+                <br><label for="nombre">Sintomas:</label>
+                    <input type="text" name="sintomas" id="sintomas" class="form-control" v-model="paciente.Sintomas">
         
                     <br/>
                         <button type="button" class="btn" v-bind:class="[agregando ? 'btn-primary' : 'btn-warning']" v-on:click="agregar">{{textoBoton}}</button>
@@ -49,7 +67,9 @@
                         <th>Email</th>
                         <th>Sexo</th>
                         <th>Telefono</th>
-                        <th>Celular</th>
+                        <th>Seguro</th>
+                        <th>Direccion</th>
+                        <th>Sintomas</th>
                         <th>Acción</th>
 
                     </tr>
@@ -65,7 +85,9 @@
                         <td>{{paciente.email}}</td>
                         <td>{{paciente.sexo}}</td>
                         <td>{{paciente.telefono}}</td>
-                        <td>{{paciente.celular}}</td>
+                        <td>{{paciente.seguro}}</td>
+                        <td>{{paciente.direccion}}</td>
+                        <td>{{paciente.sintomas}}</td>
                         <td>
                             <button class="btn btn-info" v-on:click="ver(paciente.pacienteID)">Ver</button>
                             <button class="btn btn-danger" v-on:click="borrar(paciente.pacienteID)">Borrar</button>
@@ -110,7 +132,9 @@ export default {
         Email: "",
         sexo: "",
         Telefono: "",
-        Celular: ""
+        Seguro:"",
+        Direccion:"",
+        Sintomas:"",
       },
       textoBoton: "Agregar",
       agregando: true,
@@ -132,7 +156,9 @@ export default {
             this.paciente.Email = "";
             this.paciente.sexo = "";
             this.paciente.Telefono = "";
-            this.paciente.Celular = "";
+            this.paciente.Seguro = "";
+            this.paciente.Direccion = "";
+            this.paciente.Sintomas = "";
           })
           .catch(error => {
             alert("Error interno: " + error.toString());
@@ -152,6 +178,9 @@ export default {
             this.paciente.sexo = "";
             this.paciente.Telefono = "";
             this.paciente.Celular = "";
+            this.paciente.Seguro = "";
+            this.paciente.Direccion = "";
+            this.paciente.Sintomas = "";
             this.textoBoton = "Agregar";
             this.agregando = true;
           })
@@ -186,7 +215,9 @@ export default {
           this.paciente.Email = "";
           this.paciente.sexo = "";
           this.paciente.Telefono = "";
-          this.paciente.Celular = "";
+          this.paciente.Seguro = "";
+          this.paciente.Direccion = "";
+          this.paciente.Sintomas = "";
           this.textoBoton = "Agregar";
           this.agregando = true;
         })
@@ -208,7 +239,9 @@ export default {
           this.paciente.Email = response.data.email;
           this.paciente.sexo = response.data.sexo;
           this.paciente.Telefono = response.data.telefono;
-          this.paciente.Celular = response.data.celular;
+          this.paciente.Seguro = response.data.seguro;
+          this.paciente.Direccion = response.data.direccion;
+          this.paciente.Sintomas = response.data.sintomas;
           this.textoBoton = "Editar";
           this.agregando = false;
         })

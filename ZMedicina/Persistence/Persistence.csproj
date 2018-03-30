@@ -7,6 +7,11 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180325200945_Citas.cs" />
     <Compile Remove="Migrations\20180328215421_Inicial.cs" />
+    <Compile Remove="Migrations\20180329224511_paciente.cs" />
+    <Compile Remove="Migrations\20180329225052_paciente.cs" />
+    <Compile Remove="Migrations\20180329225402_paciente.cs" />
+    <Compile Remove="Migrations\20180329230339_paciente.cs" />
+    <Compile Remove="Migrations\20180330005603_historial.cs" />
   </ItemGroup>
 
   <ItemGroup>

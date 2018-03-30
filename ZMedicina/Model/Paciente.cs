@@ -29,8 +29,12 @@ namespace Model
         public string sexo { get; set; }
         
         public string Telefono { get; set; }
-        
-        public string Celular { get; set; }
+
+        public string Direccion { get; set; }
+
+        public string Seguro { get; set; }
+
+        public string Sintomas { get; set; }
 
         public IList<pacienteMedico> pacienteMedico { get; set; }
 

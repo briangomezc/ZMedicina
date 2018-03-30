@@ -11,8 +11,8 @@ using System;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PacienteDbContext))]
-    [Migration("20180328215547_Inicial")]
-    partial class Inicial
+    [Migration("20180329234435_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,9 +45,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Model.Historial", b =>
                 {
-                    b.Property<int>("PacienteID");
-
-                    b.Property<int>("MedicoID");
+                    b.Property<int>("HistorialID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Antecedentes");
 
@@ -61,11 +60,13 @@ namespace Persistence.Migrations
 
                     b.Property<int>("Edad");
 
-                    b.Property<int>("HistorialID");
+                    b.Property<int>("MedicoID");
 
                     b.Property<string>("Nombre");
 
                     b.Property<string>("Ocupacion");
+
+                    b.Property<int>("PacienteID");
 
                     b.Property<string>("Seguro");
 
@@ -75,13 +76,13 @@ namespace Persistence.Migrations
 
                     b.Property<string>("sexo");
 
-                    b.HasKey("PacienteID", "MedicoID");
-
-                    b.HasAlternateKey("HistorialID");
+                    b.HasKey("HistorialID");
 
                     b.HasIndex("MedicoID");
 
-                    b.ToTable("Historial");
+                    b.HasIndex("PacienteID");
+
+                    b.ToTable("Historials");
                 });
 
             modelBuilder.Entity("Model.Medico", b =>
@@ -125,7 +126,7 @@ namespace Persistence.Migrations
 
                     b.Property<string>("Cedula");
 
-                    b.Property<string>("Celular");
+                    b.Property<string>("Direccion");
 
                     b.Property<string>("Email");
 
@@ -134,6 +135,10 @@ namespace Persistence.Migrations
                     b.Property<string>("Nombre");
 
                     b.Property<string>("Pass");
+
+                    b.Property<string>("Seguro");
+
+                    b.Property<string>("Sintomas");
 
                     b.Property<string>("Telefono");
 

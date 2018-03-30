@@ -7,7 +7,7 @@
             <!--Here goes the sidebar structure-->
             <div id="left-navbar" data-spy="affix" data-offset-top="0" class="left-sidebar">
               <!--Sidebar top content-->
-              <div class="left-sidebar__logo"><img src="/assets/img/logo.png" alt="logo" height="27px" width="102px"></div>
+              <div class="left-sidebar__logo"><img src="img/logo2.png"></div>
               <ul class="nav left-sidebar__elements">
                       
                   <li>   
@@ -26,12 +26,14 @@
                       <router-link to="/HistorialMedico">Historial Medico</router-link>
                   </li>
                   
-                  <li>
+                  <li> 
                       <router-link to="/Citas">Citas</router-link>
                   </li>
                   
+                  <br>
+
                   <li>
-                     <router-link to="/Login">Login</router-link>
+                     <router-link to="/Login">Login</router-link> 
                   </li>
               </ul>
               <!--Sidebar bottom content-->
