@@ -3,6 +3,7 @@ using Model;
 using Persistence;
 using Service;
 using System;
+using System.Collections.Generic;
 
 namespace Persistence
 {
@@ -28,7 +29,8 @@ namespace Persistence
         {
             modelBuilder.Entity<pacienteMedico>().HasKey(sc => new { sc.PacienteID, sc.MedicoID });
 
-            modelBuilder.Entity<Cita>().ToTable("Citas"); 
+            modelBuilder.Entity<Cita>().ToTable("Citas");
+
         }
     }
 }

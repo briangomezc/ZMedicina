@@ -10,6 +10,7 @@ namespace Service
     public interface IPacienteService
     {
         IEnumerable<Paciente> GetAll();
+        IEnumerable<Paciente> GetFiltro(string Nombre);
         bool Add(Paciente model);
         bool Update(Paciente model);
         bool Delete(int categoriaid);
@@ -35,6 +36,7 @@ namespace Service
             {
 
                 result = _PacienteDbContext.Paciente.ToList();
+
 
             }
             catch (Exception)
@@ -125,6 +127,25 @@ namespace Service
             }
             return true;
         }
+
+        public IEnumerable<Paciente> GetFiltro(string Nombre)
+        {
+            var result = new List<Paciente>();
+            try
+            {
+                
+                result = _PacienteDbContext.Paciente.Where(c => c.Nombre.Contains(Nombre)|| c.Apellidos.Contains(Nombre)).ToList();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+            return result;
+        }
+
+
     }
 
 

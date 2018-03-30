@@ -8,17 +8,14 @@
                 <label for="nombre">Cedula:</label>
                     <input type="text" name="cedula" id="cedula" class="form-control" v-model="medico.Cedula">
 
-                <div><label for="nombre">Nombre:</label>
+                <label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" v-model="medico.Nombre">
-                </div>
 
-                <div><label for="nombre">Apellidos:</label>
+                <br><label for="nombre">Apellidos:</label>
                     <input type="text" name="apellidos" id="apellidos" class="form-control" v-model="medico.Apellidos">
-                </div>
 
-                <div><label for="nombre">Fecha de Creación:</label>
+                <br><label for="nombre">Fecha de Creación:</label>
                     <input type="date" name="fecha" id="fecha" class="form-control" v-model="medico.Fecha">
-                </div>
 
                 <br><label for="nombre">Password:</label>
                     <input type="password" name="pass" id="pass" class="form-control" v-model="medico.Pass">

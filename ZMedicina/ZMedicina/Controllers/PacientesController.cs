@@ -30,8 +30,18 @@ namespace ZMedicina.Controllers
                 _PacienteService.GetAll()
                 );
         }
-        
-        // GET api/values/5
+
+        // GET api/values
+        [HttpGet("{Nombre}")]
+        public IActionResult GetFiltro(string Nombre)
+        {
+            return Json(
+                _PacienteService.GetFiltro(Nombre)
+                );
+        }
+
+
+        // GET api/values
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -59,7 +69,7 @@ namespace ZMedicina.Controllers
             );
         }
 
-        // DELETE api/values/5
+        // DELETE api/values
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
