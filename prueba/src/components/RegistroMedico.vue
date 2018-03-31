@@ -2,7 +2,7 @@
 
   <div>
        <div id="app" class="container">
-            <h1>Paciente</h1>
+            <h1>Registro</h1>
             
             <p>Registro de Usuario.</p>
             
@@ -51,53 +51,11 @@
                     <input type="text" name="sintomas" id="sintomas" class="form-control" v-model="paciente.Sintomas">
         
                     <br/>
+                    <center> 
                         <button type="button" class="btn" v-bind:class="[agregando ? 'btn-primary' : 'btn-warning']" v-on:click="agregar">{{textoBoton}}</button>
+                    </center>
                     <br>
                 
-                <table class="table mt-5">
-                <thead class="thead-dark">
-                    <tr>
-                        
-                        <th>Id</th>
-                        <th>Cedula</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Fecha</th>
-                        <th>Password</th>
-                        <th>Email</th>
-                        <th>Sexo</th>
-                        <th>Telefono</th>
-                        <th>Seguro</th>
-                        <th>Direccion</th>
-                        <th>Sintomas</th>
-                        <th>Acción</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="paciente in pacientes" v-bind:key='paciente.pacienteID'>
-                        <td>{{paciente.pacienteID}}</td>
-                        <td>{{paciente.cedula}}</td>
-                        <td>{{paciente.nombre}}</td>
-                        <td>{{paciente.apellidos}}</td>
-                        <td>{{paciente.fecha}}</td>
-                        <td>{{paciente.pass}}</td>
-                        <td>{{paciente.email}}</td>
-                        <td>{{paciente.sexo}}</td>
-                        <td>{{paciente.telefono}}</td>
-                        <td>{{paciente.seguro}}</td>
-                        <td>{{paciente.direccion}}</td>
-                        <td>{{paciente.sintomas}}</td>
-                        <td>
-                            <button class="btn btn-info" v-on:click="ver(paciente.pacienteID)">Ver</button>
-                            <button class="btn btn-danger" v-on:click="borrar(paciente.pacienteID)">Borrar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>   
-
-                
-
             </div>
 
         </div>
@@ -200,55 +158,6 @@ export default {
           alert("Error interno: " + error.toString());
         });
     },
-
-    borrar: function(id) {
-      axios
-        .delete("http://localhost:55313/api/Pacientes/Delete/" + id)
-        .then(response => {
-          this.cargar();
-          this.pacienteID = "";
-          this.paciente.Cedula = "";
-          this.paciente.Nombre = "";
-          this.paciente.Apellidos = "";
-          this.paciente.Fecha = "";
-          this.paciente.Pass = "";
-          this.paciente.Email = "";
-          this.paciente.sexo = "";
-          this.paciente.Telefono = "";
-          this.paciente.Seguro = "";
-          this.paciente.Direccion = "";
-          this.paciente.Sintomas = "";
-          this.textoBoton = "Agregar";
-          this.agregando = true;
-        })
-        .catch(error => {
-          alert("Error interno: " + error.toString());
-        });
-    },
-
-    ver: function(id) {
-      axios
-        .get("http://localhost:55313/api/Pacientes/Get/" + id)
-        .then(response => {
-          this.pacienteID = id;
-          this.paciente.Cedula = response.data.cedula;
-          this.paciente.Nombre = response.data.nombre;
-          this.paciente.Apellidos = response.data.apellidos;
-          this.paciente.Fecha = response.data.fecha;
-          this.paciente.Pass = response.data.pass;
-          this.paciente.Email = response.data.email;
-          this.paciente.sexo = response.data.sexo;
-          this.paciente.Telefono = response.data.telefono;
-          this.paciente.Seguro = response.data.seguro;
-          this.paciente.Direccion = response.data.direccion;
-          this.paciente.Sintomas = response.data.sintomas;
-          this.textoBoton = "Editar";
-          this.agregando = false;
-        })
-        .catch(error => {
-          alert("Error interno: " + error.toString());
-        });
-    }
   }
 };
 </script>
@@ -261,9 +170,3 @@ h2 {
 
 </style>
 
-
-
-
-
-
- 

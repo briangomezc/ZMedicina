@@ -5,6 +5,8 @@ import CrudPaciente from '@/components/CrudPaciente'
 import CrudMedico from '@/components/CrudMedico'
 import HistorialMedico from '@/components/HistorialMedico'
 import Citas from '@/components/Citas'
+import RegistroMedico from '@/components/RegistroMedico'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/Citas',
       name: 'Citas',
       component: Citas
+    },
+    {
+      path: '/RegistroMedico',
+      name: 'RegistroMedico',
+      component: RegistroMedico
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

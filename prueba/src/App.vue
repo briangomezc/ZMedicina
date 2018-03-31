@@ -7,7 +7,7 @@
             <!--Here goes the sidebar structure-->
             <div id="left-navbar" data-spy="affix" data-offset-top="0" class="left-sidebar">
               <!--Sidebar top content-->
-              <div class="left-sidebar__logo"><img src="./assets/img/logo2.png" height="150px" width="150px"></div>
+              <div class="left-sidebar__logo"><img src="./assets/img/logo2.png" height="100px" width="100px"></div>
               <ul class="nav left-sidebar__elements">
                       
                   <li>   
@@ -34,8 +34,6 @@
                       <router-link to="/Citas">Citas</router-link>
                   </li>
                   
-                  <br>
-
                   <li>
                      <router-link to="/Login">Login</router-link> 
                   </li>
