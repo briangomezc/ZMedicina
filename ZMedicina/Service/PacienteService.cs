@@ -15,6 +15,7 @@ namespace Service
         bool Update(Paciente model);
         bool Delete(int categoriaid);
         Paciente Get(int id);
+        Paciente Login(Paciente paciente);
     }
 
     public class PacienteService : IPacienteService
@@ -140,6 +141,23 @@ namespace Service
             catch (Exception)
             {
 
+
+            }
+            return result;
+        }
+
+        public Paciente Login(Paciente paciente)
+        {
+            var result = new Paciente();
+
+            try
+            {
+                result = _PacienteDbContext.Paciente.FirstOrDefault(c => c.Cedula.Equals(paciente.Cedula)
+                && c.Pass.Equals(paciente.Pass));
+            }
+
+            catch(Exception)
+            {
 
             }
             return result;

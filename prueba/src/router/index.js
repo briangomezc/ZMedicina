@@ -8,6 +8,7 @@ import Citas from '@/components/Citas'
 import RegistroMedico from '@/components/RegistroMedico'
 import Login from '@/components/Login'
 
+
 Vue.use(Router)
 
 export default new Router({

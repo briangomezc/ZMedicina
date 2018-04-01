@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import style from './assets/css/style.css'
+import swal from 'sweetalert'
+import VueSession from 'vue-session'
+Vue.use(VueSession)
 
 
 require('./assets/lib/jquery/jquery.min.js')

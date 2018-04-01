@@ -77,6 +77,13 @@ namespace ZMedicina.Controllers
               _PacienteService.Delete(id)
            );
         }
+        [HttpPost]
+        public IActionResult Login([FromBody] Paciente paciente)
+        {
+            return Json(
+                _PacienteService.Login(paciente)
+                );
+        }
 
 
     }
