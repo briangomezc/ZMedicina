@@ -16,6 +16,7 @@ namespace Service
         bool Update(Medico model);
         bool Delete(int categoriaid);
         Medico Get(int id);
+        Medico Login(Medico medico);
     }
     
     public class MedicoService : IMedicoService
@@ -125,6 +126,24 @@ namespace Service
                 return false;
             }
             return true;
+        }
+
+
+        public Medico Login(Medico medico)
+        {
+            var result = new Medico();
+
+            try
+            {
+                result = _PacienteDbContext.Medico.FirstOrDefault(c => c.Cedula.Equals(medico.Cedula)
+                && c.Pass.Equals(medico.Pass));
+            }
+
+            catch (Exception)
+            {
+
+            }
+            return result;
         }
     }
 

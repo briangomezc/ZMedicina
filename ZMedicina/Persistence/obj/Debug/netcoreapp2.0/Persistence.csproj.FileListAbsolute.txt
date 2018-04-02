@@ -9,3 +9,5 @@ C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\bin\Debug\netcoreap
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\bin\Debug\netcoreapp2.0\Model.pdb
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\obj\Debug\netcoreapp2.0\Persistence.dll
 C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\obj\Debug\netcoreapp2.0\Persistence.pdb
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Brian Gómez\Desktop\Proyecto\ZMedicina\Persistence\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Features.xml

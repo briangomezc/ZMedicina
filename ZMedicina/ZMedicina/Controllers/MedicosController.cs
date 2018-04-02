@@ -69,6 +69,14 @@ namespace ZMedicina.Controllers
            );
         }
 
+        [HttpPost]
+        public IActionResult Login([FromBody] Medico medico)
+        {
+            return Json(
+                _MedicoService.Login(medico)
+                );
+        }
+
 
     }
 }

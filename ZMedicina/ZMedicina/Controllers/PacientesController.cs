@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -83,6 +84,55 @@ namespace ZMedicina.Controllers
             return Json(
                 _PacienteService.Login(paciente)
                 );
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Upload([FromForm] FileUploadViewModel model, [FromForm] string Cedula, [FromForm]string Pass, [FromForm] string Nombre
+            , [FromForm]string Apellidos, [FromForm]string Fecha, [FromForm]string Email, [FromForm]string sexo, [FromForm]string Telefono,
+            [FromForm]string Direccion, [FromForm]string Seguro, [FromForm]string Sintomas, [FromForm]string Usuario
+            )
+        {
+
+            var file = model.File;
+
+            var modelo = new Paciente();
+            string path = Path.Combine("C:\\Users\\Brian Gómez\\Desktop\\Proyecto\\prueba\\static\\img");
+
+            if (file.Length > 0)
+            {
+
+
+                using (var fs = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+                {
+                    await file.CopyToAsync(fs);
+                }
+
+                modelo.Cedula = Cedula;
+                modelo.Pass = Pass;
+                modelo.Nombre = Nombre;
+                modelo.Apellidos = Apellidos;
+                modelo.Email = Email;
+                modelo.Fecha = Convert.ToDateTime(Fecha);
+                modelo.sexo = sexo;
+                modelo.Telefono = Telefono;
+                modelo.Direccion = Direccion;
+                modelo.Seguro = Seguro;
+                modelo.Sintomas = Sintomas;
+                modelo.Usuario = Usuario;
+                modelo.Foto = "/static/img/" + file.FileName;
+
+                model.Source = "/static/img/" + file.FileName;
+                model.Extension = Path.GetExtension(file.FileName).Substring(1);
+                model.Size = file.Length / 1000;
+
+                // ModelCurso.Imagen = "/static/img/" + file.FileName; ;
+
+                _PacienteService.Add(modelo);
+                return Ok(modelo);
+
+
+            }
+            return BadRequest();
         }
 
 

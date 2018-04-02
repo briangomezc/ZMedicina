@@ -36,6 +36,10 @@ namespace Model
 
         public string Celular { get; set; }
 
+        public string Foto { get; set; }
+
+        public string Usuario { get; set; }
+
         public IList<pacienteMedico> pacienteMedico { get;set; }
 
         public IList<Historial> Historial { get; set; }

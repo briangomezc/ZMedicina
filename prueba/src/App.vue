@@ -11,32 +11,52 @@
               <ul class="nav left-sidebar__elements">
                       
                   <li>   
-                     <router-link to="/index">Home</router-link>
+                     <router-link to="/">Home</router-link>
                   </li>
 
-                  <li>   
+                  <li v-if=" this.$session.get('usuario') == 'admin'">   
                      <router-link to="/CrudPaciente">Paciente</router-link>
                   </li>
 
-                  <li>
+                  <li v-if=" this.$session.get('usuario') == 'admin'">
                       <router-link to="/CrudMedico">Medico</router-link>
                   </li>
 
-                   <li>
+                   <li v-if=" this.$session.get('usuario') == 'medico' || this.$session.get('usuario') == 'admin'">
                       <router-link to="/HistorialMedico">Historial Medico</router-link>
                   </li>
 
-                  <li>
+                  <li v-if=" this.$session.get('usuario') == 'admin'">
                       <router-link to="/RegistroMedico">Registro Medico</router-link>
                   </li>
+
+                  <li v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
+                      <router-link to="/EditarRegistro">Editar Registro</router-link>
+                  </li>
                   
-                  <li> 
+                  <li v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
                       <router-link to="/Citas">Citas</router-link>
                   </li>
                   
-                  <li>
+                  <li  v-if=" ! this.$session.exists()" >
                      <router-link to="/Login">Login</router-link> 
                   </li>
+
+                  <div id="Letra"  v-if=" this.$session.exists()">
+                     
+                      <img  v-bind:src="this.$session.get('Foto')"  width="50px" alt="" style="border-radius: 100%;">
+                      
+                    {{ this.$session.get('Nombre') }} 
+                    {{ this.$session.get('Apellidos') }}
+                    
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    
+  
+                  <button type="button" class="btn btn-danger" v-on:click="cerrarSesion()">cerrar Sesion</button> 
+                  </a>
+                  </div>
+
               </ul>
               <!--Sidebar bottom content-->
             </div>
@@ -57,10 +77,27 @@
 
 
 <script>
+
 export default {
-  name: 'App'
-}
+  name: "App",
+  data: function() {
+    return {
+      
+    };
+  },
+  methods: {
+   
+    cerrarSesion: function() {
+      this.$session.destroy();
+      this.$router.push("/login");
+    }
+  },
+  mounted: function() {
+    this.fetchArticles();
+  }
+};
 </script>
+
 <style>
 input[type=text], input[type=password] {
     width: 100%;
@@ -69,5 +106,8 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+#Letra{
+    color:white;
 }
 </style>

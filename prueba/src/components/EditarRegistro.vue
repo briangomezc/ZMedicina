@@ -4,24 +4,9 @@
        <div id="app" class="container">
             <h1>Registro</h1>
             
-            <p>Registro de Usuario.</p>
-            
-            <hr>
-
-            <div class="form-group">
-                <label for="nombre">Cedula:</label>
-                    <input type="text" name="cedula" id="cedula" class="form-control" v-model="paciente.Cedula">
-
-                <br><label for="nombre">Password:</label>
-                    <input type="password" name="pass" id="pass" class="form-control" v-model="paciente.Pass">
-                
-                <br><p>Registro Medico.</p>
-
-                <hr>
-
                 <label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" v-model="paciente.Nombre">
-
+                          
                 <br><label for="nombre">Apellidos:</label>
                     <input type="text" name="apellidos" id="apellidos" class="form-control" v-model="paciente.Apellidos">
 
@@ -59,7 +44,7 @@
                     </center>
                     </div>
                 
-            </div>
+            
 
         </div>
 
@@ -67,13 +52,12 @@
 
 </template>
 
-
 <script>
 import axios from "axios";
 
 
 export default {
-  name: "CrudPaciente",
+  name: "EditarRegistro",
   created: function() {
     this.cargar();
   },
@@ -83,73 +67,65 @@ export default {
       pacientes: [],
 
       paciente: {
-        Cedula: "",
-        Nombre: "",
-        Apellidos: "",
-        Fecha: "",
-        Pass: "",
-        Email: "",
-        sexo: "",
-        Telefono: "",
-        Seguro:"",
-        Direccion:"",
-        Sintomas:"",
-        Foto:"",
+        Cedula: this.$session.get('Cedula'),
+        Pass: this.$session.get('Pass'),
+        Nombre: this.$session.get('Nombre'),
+        Apellidos: this.$session.get('Apellidos'),
+        Fecha: this.$session.get('Fecha'),
+        Email: this.$session.get('Email1'),
+        sexo: this.$session.get('sexo'),
+        Telefono: this.$session.get('Telefono'),
+        Seguro:this.$session.get('Seguro'),
+        Direccion:this.$session.get('Direccion'),
+        Sintomas:this.$session.get('Sintomas'),
         Usuario: "paciente"
       },
-      textoBoton: "Agregar",
+      textoBoton: "Editar",
       agregando: true,
-      pacienteID: ""
+      pacienteID: this.$session.get('id')
     }
   },
 
   methods: {
-        agregar : function(){
-        let formData = new FormData();
-
-              formData.append('file', this.file);
-              formData.append('Cedula', this.paciente.Cedula);
-              formData.append('Pass', this.paciente.Pass);
-              formData.append('Nombre', this.paciente.Nombre);
-              formData.append('Apellidos', this.paciente.Apellidos);
-              formData.append('Email', this.paciente.Email);
-              formData.append('Fecha', this.paciente.Fecha);
-              formData.append('sexo', this.paciente.sexo);
-              formData.append('Telefono', this.paciente.Telefono);
-              formData.append('Direccion', this.paciente.Direccion);
-              formData.append('Seguro', this.paciente.Seguro);
-              formData.append('Sintomas', this.paciente.Sintomas);
-              formData.append('Usuario', this.paciente.Usuario);       
-
-              axios.post('http://localhost:55313/api/Pacientes/Upload',formData ).then(respose =>{
-                  if(respose.data != null){
-                    swal("Agregado Correctamente", "", "success");
-                      
-                this.paciente = {
-                      Cedula: "",
-                      Pass: "",
-                      Nombre: "",
-                      Apellidos: "",
-                      Email: "",
-                      Fecha: "",
-                      sexo: "",
-                      Telefono: "",
-                      Direccion: "",
-                      Seguro: "",
-                      Sintomas: "",
-                      Usuario: "",
-                      Foto: "",
-                      file: "",
-                };
-
-                  }else{
-                        swal("Algo salio mal", "", "fail");
-                  }
-              })
-              
-        },
+      agregar: function() {
+      axios
+          .put("http://localhost:55313/api/Pacientes/Put/"+this.pacienteID, this.paciente)
+          .then(response => {
+            this.cargar();
+            this.pacienteID = "";
+            this.paciente.Cedula = "";
+            this.paciente.Nombre = "";
+            this.paciente.Apellidos = "";
+            this.paciente.Fecha = "";
+            this.paciente.Pass = "";
+            this.paciente.Email = "";
+            this.paciente.sexo = "";
+            this.paciente.Telefono = "";
+            this.paciente.Celular = "";
+            this.paciente.Seguro = "";
+            this.paciente.Direccion = "";
+            this.paciente.Sintomas = "";
+            this.textoBoton = "Agregar";
+            this.agregando = true;
+          })
+      
+          .catch(error => {
+            alert("Error interno: " + error.toString());
+          });
+    },
     handleFileUpload(){
           this.file = this.$refs.file.files[0];
+        },
+
+             cargar: function() {
+        axios
+            .get("http://localhost:55313/api/Medicos/Get")
+            .then(response => {
+            this.medicos = response.data;
+            })
+            .catch(error => {
+            alert("Error interno: " + error.toString());
+            });
         },
   }
 
@@ -163,5 +139,3 @@ h2 {
 }
 
 </style>
-
-       
