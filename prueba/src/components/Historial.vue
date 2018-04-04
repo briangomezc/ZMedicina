@@ -2,7 +2,7 @@
 
   <div>
        <div id="app" class="container">
-            <h1>Historial</h1>            
+            <h1>Historial Medico</h1>            
 
             <div class="form-group">
                     <input type="text" name="Nombre" id="Nombre" class="form-control" v-model="paciente.Nombre" v-on:keyup="filtrar">
@@ -11,7 +11,7 @@
                 <thead class="thead-dark">
                     <tr>
                         
-                        <th>Id</th>
+                        
                         <th>Cedula</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
@@ -22,13 +22,14 @@
                         <th>Seguro</th>
                         <th>Direccion</th>
                         <th>Sintomas</th>
+                        <th>Cita</th>
 
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr v-for="paciente in pacientes" v-bind:key='paciente.pacienteID'>
-                        <td>{{paciente.pacienteID}}</td>
+                       
                         <td>{{paciente.cedula}}</td>
                         <td>{{paciente.nombre}}</td>
                         <td>{{paciente.apellidos}}</td>
@@ -39,6 +40,7 @@
                         <td>{{paciente.seguro}}</td>
                         <td>{{paciente.direccion}}</td>
                         <td>{{paciente.sintomas}}</td>
+                        <td>{{paciente.Cita}}</td>
                     </tr>
                 </tbody>
             </table>   
@@ -60,7 +62,7 @@ import axios from "axios";
 
 
 export default {
-  name: "CrudPaciente",
+  name: "Historial",
   created: function() {
     this.cargar();
   },

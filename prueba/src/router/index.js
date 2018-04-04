@@ -8,6 +8,9 @@ import Citas from '@/components/Citas'
 import RegistroMedico from '@/components/RegistroMedico'
 import Login from '@/components/Login'
 import EditarRegistro from '@/components/EditarRegistro'
+import CitasPaciente from '@/components/CitasPaciente'
+import CitasMedico from '@/components/CitasMedico'
+import Historial from '@/components/Historial'
 
 
 Vue.use(Router)
@@ -53,6 +56,21 @@ export default new Router({
       path: '/EditarRegistro',
       name: 'EditarRegistro',
       component: EditarRegistro
+    },
+    {
+      path: '/CitasPaciente',
+      name: 'CitasPaciente',
+      component: CitasPaciente
+    },
+    {
+      path: '/Historial',
+      name: 'Historial',
+      component: Historial
+    },
+    {
+      path: '/CitasMedico',
+      name: 'CitasMedico',
+      component: CitasMedico
     }
   ]
 })

@@ -41,6 +41,24 @@ namespace ZMedicina.Controllers
              );
         }
 
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public IActionResult CitaPaciente(int id)
+        {
+            return Json(
+                _CitaService.PacienteCita(id)
+             );
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public IActionResult CitaMedico(int id)
+        {
+            return Json(
+                _CitaService.MedicoCita(id)
+             );
+        }
+
         // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody] Cita Model)
@@ -69,6 +87,16 @@ namespace ZMedicina.Controllers
               _CitaService.Delete(id)
            );
         }
+
+        [HttpPost]
+        public IActionResult Login([FromBody] Cita cita)
+        {
+            return Json(
+                _CitaService.Login(cita)
+                );
+        }
+
+        
 
     }
 }

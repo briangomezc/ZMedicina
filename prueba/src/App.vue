@@ -1,5 +1,8 @@
-<template>
-  <div id="app">
+<template>  
+      <div class="docs-content">
+        <div id="general">
+      
+          <div id="app">
     
       <div class="docs-wrapper">
             <!--Sidebar item function-->
@@ -8,38 +11,53 @@
             <div id="left-navbar" data-spy="affix" data-offset-top="0" class="left-sidebar">
               <!--Sidebar top content-->
               <div class="left-sidebar__logo"><img src="./assets/img/logo2.png" height="100px" width="100px"></div>
-              <ul class="nav left-sidebar__elements">
-                      
-                  <li>   
-                     <router-link to="/">Home</router-link>
+              
+              <ul>
+                  <h3 id= LetraRoja>Zmedicina</h3>
+                
+                 
+                  <li type="circle">    
+                     <router-link to="/" id= Letra>Home</router-link>
                   </li>
 
-                  <li v-if=" this.$session.get('usuario') == 'admin'">   
-                     <router-link to="/CrudPaciente">Paciente</router-link>
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'admin'">   
+                     <router-link to="/CrudPaciente" id= Letra>Paciente</router-link>
                   </li>
 
-                  <li v-if=" this.$session.get('usuario') == 'admin'">
-                      <router-link to="/CrudMedico">Medico</router-link>
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'admin'">
+                      <router-link to="/CrudMedico" id= Letra>Medico</router-link>
                   </li>
 
-                   <li v-if=" this.$session.get('usuario') == 'medico' || this.$session.get('usuario') == 'admin'">
-                      <router-link to="/HistorialMedico">Historial Medico</router-link>
+                   <li type="circle" v-if="this.$session.get('usuario') == 'admin'">
+                      <router-link to="/HistorialMedico" id= Letra>Historial Medico</router-link>
                   </li>
 
-                  <li v-if=" this.$session.get('usuario') == 'admin'">
-                      <router-link to="/RegistroMedico">Registro Medico</router-link>
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'medico' || this.$session.get('usuario') == 'admin'">
+                      <router-link to="/Historial" id= Letra>Historial</router-link>
                   </li>
 
-                  <li v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
-                      <router-link to="/EditarRegistro">Editar Registro</router-link>
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'admin'">
+                      <router-link to="/RegistroMedico" id= Letra>Registro Medico</router-link>
+                  </li>
+
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
+                      <router-link to="/EditarRegistro" id= Letra>Editar Registro</router-link>
                   </li>
                   
-                  <li v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
-                      <router-link to="/Citas">Citas</router-link>
+                  <li type="circle" v-if="this.$session.get('usuario') == 'admin'"> 
+                      <router-link to="/Citas" id= Letra>Citas del Paciente</router-link>
+                  </li>
+
+                  <li type="circle" v-if=" this.$session.get('usuario') == 'medico' || this.$session.get('usuario') == 'admin'"> 
+                      <router-link to="/CitasMedico" id= Letra>Citas del Medico</router-link>
+                  </li>
+
+                   <li type="circle" v-if=" this.$session.get('usuario') == 'paciente' || this.$session.get('usuario') == 'admin'"> 
+                      <router-link to="/CitasPaciente" id= Letra>Citas</router-link>
                   </li>
                   
-                  <li  v-if=" ! this.$session.exists()" >
-                     <router-link to="/Login">Login</router-link> 
+                  <li type="circle" v-if=" ! this.$session.exists()" >
+                     <router-link to="/Login" id= Letra>Login</router-link> 
                   </li>
 
                   <div id="Letra"  v-if=" this.$session.exists()">
@@ -60,11 +78,6 @@
               </ul>
               <!--Sidebar bottom content-->
             </div>
-      <div class="docs-content">
-        <div id="general">
-         
-        
-
 
          <router-view></router-view>
 
@@ -109,5 +122,28 @@ input[type=text], input[type=password] {
 }
 #Letra{
     color:white;
+}
+#LetraRoja{
+    color:rgb(248, 8, 8);
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgb(17, 17, 17);
 }
 </style>

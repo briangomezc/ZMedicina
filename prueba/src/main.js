@@ -9,6 +9,7 @@ import VueSession from 'vue-session'
 Vue.use(VueSession)
 
 
+
 require('./assets/lib/jquery/jquery.min.js')
 require('./assets/js/app.js')
 require('./assets/lib/bootstrap/dist/js/bootstrap.min.js')

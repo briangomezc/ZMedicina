@@ -10,10 +10,13 @@ namespace Service
     public interface ICitaService
     {
         IEnumerable<Cita> GetAll();
+        IEnumerable<Cita> PacienteCita(int id);
+        IEnumerable<Cita> MedicoCita(int id);
         bool Add(Cita model);
         bool Update(Cita model);
         bool Delete(int id);
         Cita Get(int id);
+        Cita Login(Cita cita);
     }
 
     public class CitaService : ICitaService
@@ -118,6 +121,65 @@ namespace Service
                 return false;
             }
             return true;
+        }
+
+        public Cita Login(Cita cita)
+        {
+            var result = new Cita();
+
+            try
+            {
+                result = _PacienteDbContext.Cita.FirstOrDefault(c => c.Fecha.Equals(cita.Fecha)
+                && c.Tipo.Equals(cita.Tipo));
+            }
+
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
+
+        public IEnumerable<Cita> PacienteCita(int id)
+        {
+            var result = new List<Cita>();
+            try
+            {
+                result = (from cita in _PacienteDbContext.Cita
+                          join paciente in _PacienteDbContext.Paciente
+                          on cita.PacienteID equals paciente.PacienteID
+                          where (paciente.PacienteID == id)
+                          select cita).ToList();
+
+            }
+            catch (Exception)
+            {
+
+              
+
+            }
+            return result;
+        }
+
+        public IEnumerable<Cita> MedicoCita(int id)
+        {
+            var result = new List<Cita>();
+            try
+            {
+                result = (from cita in _PacienteDbContext.Cita
+                          join medico in _PacienteDbContext.Medico
+                          on cita.MedicoID equals medico.MedicoID
+                          where (medico.MedicoID == id)
+                          select cita).ToList();
+
+            }
+            catch (Exception)
+            {
+
+
+
+            }
+            return result;
         }
     }
 }

@@ -9,10 +9,13 @@
                 <form v-on:submit.prevent="Verificar">
                 <input type="text" class="form-control" placeholder="Cedula" required autofocus v-model="Usuario.Cedula">
                 <input type="password" class="form-control" placeholder="Password" required v-model="Usuario.Pass">
+                <div>
                 <select class="form-control" data-style="btn-primary" v-model="Selecciona">
                   <option value="Paciente">Paciente</option>
                   <option value="Medico">Medico</option>
                 </select>
+                </div>
+                <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Sign in</button>
                 </form>
@@ -111,11 +114,7 @@ export default {
   }
 
 }
-      
-
-      
-  
-
+ 
 </script>
 
 
