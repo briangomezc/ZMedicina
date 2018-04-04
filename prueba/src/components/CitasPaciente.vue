@@ -24,10 +24,10 @@
                 <br/>
 
                 <label for="nombre">Paciente:</label>
-                <select class="form-control" data-style="btn-primary" v-model="cita.PacienteID">
-                  <option :value="paciente.pacienteID" v-for="paciente in pacientes" v-bind:key="paciente.pacienteID">{{paciente.nombre}}</option>
+                <select class="form-control" data-style="btn-primary" v-model="cita.Paciente">
+                  <option>{{this.$session.get('Nombre')}}</option>
                 </select>
-
+                
                 <br>
                 <br>
 
