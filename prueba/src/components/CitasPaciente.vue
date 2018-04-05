@@ -24,8 +24,8 @@
                 <br/>
 
                 <label for="nombre">Paciente:</label>
-                <select class="form-control" data-style="btn-primary" v-model="cita.Paciente">
-                  <option>{{this.$session.get('Nombre')}}</option>
+                <select class="form-control" data-style="btn-primary" v-model="cita.PacienteID">
+                  <option v-bind:value="this.$session.get('id')">{{this.$session.get('Nombre')}}</option>
                 </select>
                 
                 <br>

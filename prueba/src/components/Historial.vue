@@ -22,7 +22,6 @@
                         <th>Seguro</th>
                         <th>Direccion</th>
                         <th>Sintomas</th>
-                        <th>Cita</th>
 
                     </tr>
                 </thead>
@@ -40,7 +39,6 @@
                         <td>{{paciente.seguro}}</td>
                         <td>{{paciente.direccion}}</td>
                         <td>{{paciente.sintomas}}</td>
-                        <td>{{paciente.Cita}}</td>
                     </tr>
                 </tbody>
             </table>   
